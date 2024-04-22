@@ -1,12 +1,17 @@
 // require express
 const express = require('express');
 
+// import the user routes
+const userRouter = require('./routes/userRoutes');
+
 // create an express app
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello World!!');
-});
+// use the express json middleware
+app.use(express.json());
+
+// define the endpoints
+app.use('/api/users', userRouter);
 
 // export the app module
 module.exports = app;
