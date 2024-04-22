@@ -64,3 +64,15 @@ Backend Application is a RESTful API developed using Node.js and Express.js. It 
 
 - Run `npm init` to create a package.json file.
 - Run `npm install` to install the dependencies.
+
+## API Endpoints
+
+### Users
+
+- `POST /api/users` - Create a new user
+- `GET /api/users` - Get all users
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user by ID
+- `DELETE /api/users/:id` - Delete user by ID
+- `POST /api/users/login` - Login user
+- `POST /api/users/logout` - Logout user
