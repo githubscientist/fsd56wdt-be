@@ -98,13 +98,13 @@ Job Portal Application
   - [] Update applied job
   - [] Revoke applied job
 
-- [] User Profile
+- [x] User Profile
 
-  - [] Get user profile
-  - [] Update user profile
-  - [] Delete user profile
+  - [x] Get user profile
+  - [x] Update user profile
+  - [x] Delete user profile
 
-- [] Logout
+- [x] Logout
 
 ## API Endpoints
 
