@@ -173,6 +173,92 @@ const userController = {
         } catch (error) {
             response.status(500).json({ message: error.message });
         }
+    },
+
+    // get all users
+    getAllUsers: async (request, response) => {
+        try {
+            // get all users from the database
+            const users = await User.find().select('-passwordHash -__v');
+
+            // return the users
+            response.status(200).json({ users });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    },
+
+    // get a user by id
+    getUserById: async (request, response) => {
+        try {
+            // get the user id from the request parameters
+            const userId = request.params.id;
+
+            // find the user by id from the database
+            const user = await User.findById(userId).select('-passwordHash -__v');
+
+            // if the user does not exist, return an error message
+            if (!user) {
+                return response.status(400).json({ message: 'user not found' });
+            }
+
+            // return the user
+            response.status(200).json({ user });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    },
+
+    // update the user by id
+    updateUserById: async (request, response) => {
+        try {
+            // get the user id from the request parameters
+            const userId = request.params.id;
+
+            // get the user inputs from the request body
+            const { name, location } = request.body;
+
+            // find the user by id from the database
+            const user = await User.findById(userId);
+
+            // if the user does not exist, return an error message
+            if (!user) {
+                return response.status(400).json({ message: 'user not found' });
+            }
+
+            // update the user details
+            if(name) user.name = name;
+            if(location) user.location = location;
+
+            // save the user
+            const updatedUser = await user.save();
+
+            // return a success message with the updated user
+            response.status(200).json({ message: 'user updated successfully', user: updatedUser });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    },
+
+    // delete the user by id
+    deleteUserById: async (request, response) => {
+        try {
+            // get the user id from the request parameters
+            const userId = request.params.id;
+
+            // delete the user from the database
+            const deletedUser = await User.findByIdAndDelete(userId);
+
+            // if the user does not exist, return an error message
+            if (!deletedUser) {
+                return response.status(400).json({ message: 'user not found' });
+            }
+
+            // return a success message
+            response.status(200).json({ message: 'user deleted successfully' });
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
     }
 }
 
