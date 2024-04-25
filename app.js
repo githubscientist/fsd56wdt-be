@@ -33,6 +33,12 @@ app.use(morgan('dev'));
 // use the express json middleware
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
+app.head('/api', (req, res) => {
+    res.send('Welcome to the Job Portal API');
+});
+
 // define the endpoints
 app.use('/api/users', userRouter);
 app.use('/api/companies', companyRouter);
