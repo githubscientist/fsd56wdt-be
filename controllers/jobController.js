@@ -114,6 +114,64 @@ const jobController = {
                 message: error.message
             });
         }
+    },
+    // method to apply for a job
+    applyJob: async (req, res) => {
+        try {
+            // get the job id from the request object
+            const jobId = req.params.jobId;
+
+            // get the user id from the request object
+            const userId = req.userId;
+
+            // get the job
+            const job = await Job.findById(jobId);
+
+            // check if the user has already applied for the job
+            if (job.applicants.includes(userId)) {
+                return res.status(400).json({
+                    message: 'You have already applied for this job'
+                });
+            }
+
+            // push the user id to the job's applicants array
+            const updatedJob = await Job.findByIdAndUpdate(jobId, {
+                $push: {
+                    applicants: userId
+                }
+            }, {
+                new: true
+            });
+
+            // send the updated job as the response
+            res.status(200).json(updatedJob);
+        } catch (error) {
+            res.status(400).json({
+                message: error.message
+            });
+        }
+    },
+    // method to get all the jobs applied by a user
+    getAppliedJobs: async (req, res) => {
+        try {
+            // get the user id from the request object
+            const userId = req.userId;
+
+            // get the user
+            const user = await User.findById(userId);
+
+            // get all the jobs applied by the user
+            const jobs = await Job.find({
+                applicants: userId
+            });
+
+            // send the jobs as the response
+            res.status(200).json(jobs);
+        } catch (error) {
+            res.status(400).json({
+                message: error.message
+            });
+        }
     }
 };
 

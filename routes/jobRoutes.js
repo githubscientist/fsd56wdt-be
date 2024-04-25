@@ -4,15 +4,16 @@ const jobController = require('../controllers/jobController');
 const auth = require('../middleware/auth');
 
 // define the routes or endpoints
-jobRouter.post('/jobs', auth.isAuth, auth.isAdmin, jobController.createJob);
+jobRouter.post('/', auth.isAuth, auth.isAdmin, jobController.createJob);
 
-jobRouter.get('/jobs', auth.isAuth, jobController.getJobs);
-jobRouter.get('/jobs/:id', auth.isAuth, jobController.getJob);
+jobRouter.get('/', auth.isAuth, jobController.getJobs);
+jobRouter.get('/applied', auth.isAuth, jobController.getAppliedJobs);
 
-jobRouter.put('/jobs/:id', auth.isAuth, auth.isAdmin, jobController.updateJob);
-jobRouter.delete('/jobs/:id', auth.isAuth, auth.isAdmin, jobController.deleteJob);
+jobRouter.get('/:jobId', auth.isAuth, jobController.getJob);
 
-// jobRouter.post('/jobs/:id/apply', auth.isAuth, jobController.applyJob);
-// jobRouter.get('/jobs/:id/applied', auth.isAuth, auth.isAdmin, jobController.getAppliedJobs);
+jobRouter.put('/:jobId', auth.isAuth, auth.isAdmin, jobController.updateJob);
+jobRouter.delete('/:jobId', auth.isAuth, auth.isAdmin, jobController.deleteJob);
+
+jobRouter.post('/:jobId/apply', auth.isAuth, jobController.applyJob);
 
 module.exports = jobRouter;

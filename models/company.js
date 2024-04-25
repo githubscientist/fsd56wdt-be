@@ -16,7 +16,11 @@ const companySchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    jobs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Job'
+    }]
 });
 
 // create the company model and export it

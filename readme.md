@@ -74,29 +74,26 @@ Job Portal Application
 - [x] User Registration
 - [x] User Login
 
-- [] Admin Dashboard
+- [x] Admin Dashboard
 
-  - [] Add a company
-  - [] Update a company
-  - [] Delete a company
-  - [] Get all companies
-  - [] Get company by ID
+  - [x] Add a company
+  - [x] Update a company
+  - [x] Delete a company
+  - [x] Get all companies
+  - [x] Get company by ID
 
-  - [] Add a job
-  - [] Update a job
-  - [] Delete a job
-  - [] Get all jobs
-  - [] Get job by ID
+  - [x] Add a job
+  - [x] Update a job
+  - [x] Delete a job
+  - [x] Get all jobs
+  - [x] Get job by ID
 
-- [] User Dashboard
+- [x] User Dashboard
 
-  - [] View all jobs
-  - [] View a job by ID
-  - [] Apply for a job
-  - [] View applied jobs
-  - [] View applied job by ID
-  - [] Update applied job
-  - [] Revoke applied job
+  - [x] View all jobs
+  - [x] View a job by ID
+  - [x] Apply for a job
+  - [x] View applied jobs
 
 - [x] User Profile
 
