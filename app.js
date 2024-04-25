@@ -20,7 +20,7 @@ const jobRouter = require('./routes/jobRoutes');
 
 // use the cors middleware
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: '*', // allow all origins
     credentials: true
 }));
 
